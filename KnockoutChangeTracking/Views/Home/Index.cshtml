@@ -1,0 +1,53 @@
+﻿<div id="body">
+    <div class="left-section" style="height: 600px; width: 25%; float: left; background-color: #b9b9b9">
+        <h2>Blogs</h2>
+        <button data-bind="click: newBlog">New Blog</button>
+        <button id="saveAll">Save</button>
+
+        <ul data-bind="foreach: blogs">
+            <li style="list-style: none">
+                <a data-bind="text: Title, id: Id, click: $parent.selectBlog" href="#"></a>
+            </li>
+        </ul>
+    </div>
+    <div class="right-section" style="height: 600px; width: 75%; float: left; background-color: #d9d9d9"
+        data-bind="with: selectedBlog">
+        <div id="selectView" style="position:absolute">
+            <div>
+                Title:
+            <label data-bind="text: Title" />
+            </div>
+            <div>
+                <div>
+                    Post:
+                </div>
+                <span data-bind="text: Post"></span>
+
+            </div>
+            <div>
+                <button id="edit" data-bind="click: $parent.editBlog">Edit</button>
+            </div>
+        </div>
+        <div id="editView"  style="position:absolute">
+            <div>
+                Title:
+            <input data-bind="value: Title" />
+            </div>
+            <div>
+                Post: <textarea data-bind="value: Post"></textarea>
+            </div>
+            <div>
+                <button id="update" data-bind="click: $parent.updateBlog">Update</button>
+                <button id="cancel" data-bind="click: $parent.cancelEdit">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/Scripts/knockout-2.2.0.js"></script>
+    <script src="~/Scripts/knockout.protectedobservable.js"></script>
+    <script src="~/Scripts/knockout.changetracker.js"></script>
+    <script src="~/Scripts/ko-blog.js"></script>
+    
+}
